@@ -14,7 +14,7 @@ var (
 
 func init() {
 
-	config, err := config_utils.LoadConfig("../../../.")
+	config, err := config_utils.LoadConfig("../../../")
 	if err != nil {
 		log.Fatal("cannot load config:", err)
 	}
