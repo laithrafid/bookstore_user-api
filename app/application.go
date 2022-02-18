@@ -12,9 +12,9 @@ var (
 )
 
 func StartApplication() {
-	config, err := config_utils.LoadConfig("../")
+	config, err := config_utils.LoadConfig("../.")
 	if err != nil {
-		log.Fatal("cannot load config:", err)
+		log.Fatal("cannot load config of application:", err)
 	}
 	mapUrls()
 	router.Run(config.ServerAddress)

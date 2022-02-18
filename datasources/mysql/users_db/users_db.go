@@ -13,10 +13,9 @@ var (
 )
 
 func init() {
-
-	config, err := config_utils.LoadConfig("../../../")
+	config, err := config_utils.LoadConfig(".")
 	if err != nil {
-		log.Fatal("cannot load config:", err)
+		log.Fatal("cannot load config of users_db:", err)
 	}
 	Client, connErr := sql.Open(config.DBDriver, config.DBSource)
 	if connErr != nil {
