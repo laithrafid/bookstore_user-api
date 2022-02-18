@@ -7,13 +7,13 @@ import (
 	"github.com/gin-gonic/gin"
 	Users "github.com/laithrafid/bookstore_user-api/domain/users"
 	"github.com/laithrafid/bookstore_user-api/services"
-	"github.com/laithrafid/bookstore_user-api/utils/errors"
+	"github.com/laithrafid/bookstore_user-api/utils/errors_utils"
 )
 
 func CreateUser(c *gin.Context) {
 	var user Users.User
 	if err := c.ShouldBindJSON(&user); err != nil {
-		restErr := errors.NewBadRequestError("invalid json body")
+		restErr := errors_utils.NewBadRequestError("invalid json body")
 		c.JSON(restErr.Status, restErr)
 		return
 	}
@@ -28,7 +28,7 @@ func CreateUser(c *gin.Context) {
 func GetUser(c *gin.Context) {
 	userId, userErr := strconv.ParseInt(c.Param("user_id"), 10, 64)
 	if userErr != nil {
-		err := errors.NewBadRequestError("invalid User Id, User Id should be a integer number")
+		err := errors_utils.NewBadRequestError("invalid User Id, User Id should be a integer number")
 		c.JSON(err.Status, err)
 		return
 	}

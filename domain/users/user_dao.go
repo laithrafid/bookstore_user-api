@@ -4,18 +4,24 @@ package Users
 import (
 	"fmt"
 
+	"github.com/laithrafid/bookstore_user-api/utils/errors_utils"
+
+	"github.com/laithrafid/bookstore_user-api/datasources/mysql/users_db"
 	"github.com/laithrafid/bookstore_user-api/utils/date_utils"
-	"github.com/laithrafid/bookstore_user-api/utils/errors"
 )
 
 var (
 	usersDB = make(map[int64]*User)
 )
 
-func (user *User) Get() *errors.RestErr {
+func (user *User) Get() *errors_utils.RestErr {
 	result := usersDB[user.Id]
+	if err := users_db.Client.Ping(); err != nil {
+		panic(err)
+	}
+
 	if result == nil {
-		return errors.NewNotFoundError(fmt.Sprintf("user %d not found in  db", user.Id))
+		return errors_utils.NewNotFoundError(fmt.Sprintf("user %d not found in  db", user.Id))
 	}
 	user.Id = result.Id
 	user.FirstName = result.FirstName
@@ -25,13 +31,13 @@ func (user *User) Get() *errors.RestErr {
 
 	return nil
 }
-func (user *User) Save() *errors.RestErr {
+func (user *User) Save() *errors_utils.RestErr {
 	current := usersDB[user.Id]
 	if current != nil {
 		if current.Email == user.Email {
-			return errors.NewBadRequestError(fmt.Sprintf("email %s already registered", user.Email))
+			return errors_utils.NewBadRequestError(fmt.Sprintf("email %s already registered", user.Email))
 		}
-		return errors.NewBadRequestError(fmt.Sprintf("user %d already exists", user.Id))
+		return errors_utils.NewBadRequestError(fmt.Sprintf("user %d already exists", user.Id))
 	}
 	user.DateCreated = date_utils.GetNowString()
 
