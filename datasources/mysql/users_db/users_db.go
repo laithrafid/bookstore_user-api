@@ -24,5 +24,5 @@ func init() {
 	if err = Client.Ping(); err != nil {
 		panic(err)
 	}
-	log.Println("database successfuly connected")
+	log.Println("Successfuly connected to database")
 }

@@ -1,4 +1,4 @@
-package Users
+package Dusers
 
 // date transfer object , from here you can write logic to transfer from db to my app
 import (

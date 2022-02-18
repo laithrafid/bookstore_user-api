@@ -1,4 +1,4 @@
-package Users
+package Dusers
 
 // date access object  , here you can write from/to and query dbs
 import (
@@ -7,7 +7,12 @@ import (
 	"github.com/laithrafid/bookstore_user-api/utils/errors_utils"
 
 	"github.com/laithrafid/bookstore_user-api/datasources/mysql/users_db"
-	"github.com/laithrafid/bookstore_user-api/utils/date_utils"
+)
+
+const (
+	queryInsertUser = "INSERT INTO users(first_name, last_name, email, date_created) VALUES(?, ?, ?, ?);"
+	queryGetUser    = "SELECT FROM users(first_name, last_name, email, date_created) WHERE Id=useris;"
+	queryGetUsers   = "SELECT * FROM users_db.users;"
 )
 
 var (
@@ -32,15 +37,20 @@ func (user *User) Get() *errors_utils.RestErr {
 	return nil
 }
 func (user *User) Save() *errors_utils.RestErr {
-	current := usersDB[user.Id]
-	if current != nil {
-		if current.Email == user.Email {
-			return errors_utils.NewBadRequestError(fmt.Sprintf("email %s already registered", user.Email))
-		}
-		return errors_utils.NewBadRequestError(fmt.Sprintf("user %d already exists", user.Id))
+	stmt, err := users_db.Client.Prepare(queryInsertUser)
+	if err != nil {
+		return errors_utils.NewInternalServerError(err.Error())
 	}
-	user.DateCreated = date_utils.GetNowString()
-
-	usersDB[user.Id] = user
+	defer stmt.Close()
+	instertResult, err := stmt.Exec(user.FirstName, user.LastName, user.Email, user.DateCreated)
+	if err != nil {
+		return errors_utils.NewInternalServerError(
+			fmt.Sprintf("error when trying to Save user: %s", err.Error()))
+	}
+	userId, err := instertResult.LastInsertId()
+	if err != nil {
+		return errors_utils.NewInternalServerError(fmt.Sprintf("error when trying to Save user with Id: %s", err.Error()))
+	}
+	user.Id = userId
 	return nil
 }
