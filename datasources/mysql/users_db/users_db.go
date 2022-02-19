@@ -4,9 +4,9 @@ import (
 	"database/sql"
 	"fmt"
 	"log"
+	"os"
 
 	"github.com/go-sql-driver/mysql"
-	"github.com/laithrafid/bookstore_user-api/utils/config_utils"
 	logger "github.com/laithrafid/bookstore_user-api/utils/logger_utils"
 )
 
@@ -19,18 +19,14 @@ const (
 
 var (
 	Client *sql.DB
+
+	username = os.Getenv(mysqlUsersUsername)
+	password = os.Getenv(mysqlUsersPassword)
+	host     = os.Getenv(mysqlUsersHost)
+	schema   = os.Getenv(mysqlUsersSchema)
 )
 
 func init() {
-	config, err := config_utils.LoadConfig(".")
-	if err != nil {
-		log.Fatal("cannot load config of variables for db:", err)
-	}
-	username := config.Username
-	password := config.Password
-	host := config.Host
-	schema := config.Schema
-
 	dataSourceName := fmt.Sprintf("%s:%s@tcp(%s)/%s?charset=utf8",
 		username, password, host, schema,
 	)
@@ -39,7 +35,7 @@ func init() {
 	if connErr != nil {
 		panic(connErr)
 	}
-	if connErr = Client.Ping(); err != nil {
+	if connErr = Client.Ping(); connErr != nil {
 		panic(connErr)
 	}
 
