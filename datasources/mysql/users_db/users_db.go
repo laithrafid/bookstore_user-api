@@ -4,34 +4,26 @@ import (
 	"database/sql"
 	"fmt"
 	"log"
-	"os"
 
 	"github.com/go-sql-driver/mysql"
+	"github.com/laithrafid/bookstore_user-api/utils/config_utils"
 	logger "github.com/laithrafid/bookstore_user-api/utils/logger_utils"
-)
-
-const (
-	mysqlUsersUsername = "mysql_users_username"
-	mysqlUsersPassword = "mysql_users_password"
-	mysqlUsersHost     = "mysql_users_host"
-	mysqlUsersSchema   = "mysql_users_schema"
 )
 
 var (
 	Client *sql.DB
-
-	username = os.Getenv(mysqlUsersUsername)
-	password = os.Getenv(mysqlUsersPassword)
-	host     = os.Getenv(mysqlUsersHost)
-	schema   = os.Getenv(mysqlUsersSchema)
 )
 
 func init() {
-	dataSourceName := fmt.Sprintf("%s:%s@tcp(%s)/%s?charset=utf8",
-		username, password, host, schema,
-	)
+	config, err := config_utils.LoadConfig(".")
+	if err != nil {
+		log.Fatal("cannot load mysql config:", err)
+	}
+	driver := fmt.Sprintln(config.DBDriver)
+	source := fmt.Sprintln(config.DBSource)
+
 	var connErr error
-	Client, connErr = sql.Open("mysql", dataSourceName)
+	Client, connErr = sql.Open(driver, source)
 	if connErr != nil {
 		panic(connErr)
 	}

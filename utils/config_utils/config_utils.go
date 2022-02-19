@@ -6,11 +6,9 @@ import (
 
 type Config struct {
 	/// ConfigVarName:Type:MaptoConfigVarNameindotenvfile
-	ServerAddress string `mapstructure:"ServerAddress"`
-	Username      string `mapstructure:"mysqlUsersUsername"`
-	Password      string `mapstructure:"mysqlUsersPassword"`
-	Host          string `mapstructure:"mysqlUsersHost"`
-	Schema        string `mapstructure:"mysqlUsersSchema"`
+	DBDriver      string `mapstructure:"DB_DRIVER"`
+	DBSource      string `mapstructure:"DB_SOURCE"`
+	ServerAddress string `mapstructure:"SERVER_ADDRESS"`
 }
 
 func LoadConfig(path string) (config Config, err error) {
