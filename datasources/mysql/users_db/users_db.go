@@ -6,7 +6,7 @@ import (
 
 	"github.com/go-sql-driver/mysql"
 	"github.com/laithrafid/bookstore_user-api/utils/config_utils"
-	logger "github.com/laithrafid/bookstore_user-api/utils/logger_utils"
+	"github.com/laithrafid/bookstore_user-api/utils/logger_utils"
 )
 
 var (
@@ -30,6 +30,6 @@ func init() {
 		panic(connErr)
 	}
 
-	mysql.SetLogger(logger.GetLogger())
+	mysql.SetLogger(logger_utils.GetLogger())
 	log.Println("database successfully configured")
 }
