@@ -2,7 +2,6 @@ package users_db
 
 import (
 	"database/sql"
-	"fmt"
 	"log"
 
 	"github.com/go-sql-driver/mysql"
@@ -19,8 +18,8 @@ func init() {
 	if err != nil {
 		log.Fatal("cannot load mysql config:", err)
 	}
-	driver := fmt.Sprintln(config.DBDriver)
-	source := fmt.Sprintln(config.DBSource)
+	driver := config.DBDriver
+	source := config.DBSource
 
 	var connErr error
 	Client, connErr = sql.Open(driver, source)
