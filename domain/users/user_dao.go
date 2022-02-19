@@ -1,12 +1,11 @@
-package Dusers
+package users
 
 // date access object  , here you can write from/to and query dbs
 import (
 	"fmt"
 
-	"github.com/laithrafid/bookstore_user-api/utils/errors_utils"
-
 	"github.com/laithrafid/bookstore_user-api/datasources/mysql/users_db"
+	"github.com/laithrafid/bookstore_user-api/utils/errors_utils"
 )
 
 const (
@@ -20,11 +19,10 @@ var (
 )
 
 func (user *User) Get() *errors_utils.RestErr {
-	result := usersDB[user.Id]
 	if err := users_db.Client.Ping(); err != nil {
 		panic(err)
 	}
-
+	result := usersDB[user.Id]
 	if result == nil {
 		return errors_utils.NewNotFoundError(fmt.Sprintf("user %d not found in  db", user.Id))
 	}

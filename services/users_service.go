@@ -1,11 +1,11 @@
 package services
 
 import (
-	Dusers "github.com/laithrafid/bookstore_user-api/domain/users"
+	"github.com/laithrafid/bookstore_user-api/domain/users"
 	"github.com/laithrafid/bookstore_user-api/utils/errors_utils"
 )
 
-func CreateUser(user Dusers.User) (*Dusers.User, *errors_utils.RestErr) {
+func CreateUser(user users.User) (*users.User, *errors_utils.RestErr) {
 	if err := user.Validate(); err != nil {
 		return nil, err
 	}
@@ -14,8 +14,8 @@ func CreateUser(user Dusers.User) (*Dusers.User, *errors_utils.RestErr) {
 	}
 	return &user, nil
 }
-func GetUser(userId int64) (*Dusers.User, *errors_utils.RestErr) {
-	result := &Dusers.User{Id: userId}
+func GetUser(userId int64) (*users.User, *errors_utils.RestErr) {
+	result := &users.User{Id: userId}
 	if err := result.Get(); err != nil {
 		return nil, err
 	}
