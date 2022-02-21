@@ -25,8 +25,8 @@ const (
 func (user *User) Get() errors_utils.RestErr {
 	stmt, err := users_db.Client.Prepare(queryGetUser)
 	if err != nil {
-		logger_utils.Error("error when trying to prepare get user statement", err)
-		return errors_utils.NewInternalServerError("error when tying to get user", errors.New("database error"))
+		logger_utils.Error("error trying to prepare get user statement", err)
+		return errors_utils.NewInternalServerError("error tying to get user", errors.New("database error"))
 	}
 	defer stmt.Close()
 
@@ -42,21 +42,21 @@ func (user *User) Get() errors_utils.RestErr {
 func (user *User) Save() errors_utils.RestErr {
 	stmt, err := users_db.Client.Prepare(queryInsertUser)
 	if err != nil {
-		logger_utils.Error("error when trying to prepare save user statement", err)
-		return errors_utils.NewInternalServerError("error when tying to save user", errors.New("database error"))
+		logger_utils.Error("error trying to prepare save user statement", err)
+		return errors_utils.NewInternalServerError("error tying to save user", errors.New("database error"))
 	}
 	defer stmt.Close()
 
 	insertResult, saveErr := stmt.Exec(user.FirstName, user.LastName, user.Email, user.DateCreated, user.Status, user.Password)
 	if saveErr != nil {
-		logger_utils.Error("error when trying to save user", saveErr)
-		return errors_utils.NewInternalServerError("error when tying to save user", errors.New("database error"))
+		logger_utils.Error("error trying to save user", saveErr)
+		return errors_utils.NewInternalServerError("error tying to save user", errors.New("database error"))
 	}
 
 	userId, err := insertResult.LastInsertId()
 	if err != nil {
-		logger_utils.Error("error when trying to get last insert id after creating a new user", err)
-		return errors_utils.NewInternalServerError("error when tying to save user", errors.New("database error"))
+		logger_utils.Error("error trying to get last insert id after creating a new user", err)
+		return errors_utils.NewInternalServerError("error tying to save user", errors.New("database error"))
 	}
 	user.Id = userId
 

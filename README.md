@@ -14,3 +14,9 @@ adding new variable
 	}
 ```
 4. make sure path works , tip add special log for when to load into package
+
+#Programing tip for new features/functions creation start in this order:
+1. domain
+2. service
+3. controller
+3. urlmappings 

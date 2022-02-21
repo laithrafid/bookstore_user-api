@@ -8,7 +8,11 @@ import (
 )
 
 const (
-	StatusActive = "active"
+	StatusActive  = "active"
+	StatusPending = "pending"
+	StatusBanned  = "banned"
+	StatusCreated = "created"
+	StatusRemoved = "removed"
 )
 
 type User struct {
@@ -36,5 +40,6 @@ func (user *User) Validate() errors_utils.RestErr {
 	if user.Password == "" {
 		return errors_utils.NewBadRequestError("invalid password")
 	}
+	//TODO: password policy validator function
 	return nil
 }
