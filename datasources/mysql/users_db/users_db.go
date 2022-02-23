@@ -2,7 +2,6 @@ package users_db
 
 import (
 	"database/sql"
-	"log"
 
 	"github.com/go-sql-driver/mysql"
 	"github.com/laithrafid/bookstore_user-api/utils/config_utils"
@@ -16,7 +15,7 @@ var (
 func init() {
 	config, err := config_utils.LoadConfig(".")
 	if err != nil {
-		log.Fatal("cannot load mysql config:", err)
+		logger_utils.Error("cannot load mysql config:", err)
 	}
 	driver := config.DBDriver
 	source := config.DBSource
@@ -24,12 +23,12 @@ func init() {
 	var connErr error
 	Client, connErr = sql.Open(driver, source)
 	if connErr != nil {
-		panic(connErr)
+		logger_utils.Error("Error trying to connect to database", connErr)
 	}
 	if connErr = Client.Ping(); connErr != nil {
-		panic(connErr)
+		logger_utils.Error("Error trying to ping to database", connErr)
 	}
 
 	mysql.SetLogger(logger_utils.GetLogger())
-	log.Println("database successfully configured")
+	logger_utils.Info("successfully connected to backend Database")
 }

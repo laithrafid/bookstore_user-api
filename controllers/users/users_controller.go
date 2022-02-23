@@ -72,7 +72,6 @@ func Update(c *gin.Context) {
 		c.JSON(restErr.Status(), restErr)
 		return
 	}
-
 	user.Id = userId
 
 	isPartial := c.Request.Method == http.MethodPatch

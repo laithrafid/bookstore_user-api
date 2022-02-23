@@ -114,7 +114,7 @@ func (user *User) FindByStatus(status string) ([]User, errors_utils.RestErr) {
 		var user User
 		if err := rows.Scan(&user.Id, &user.FirstName, &user.LastName, &user.Email, &user.DateCreated, &user.Status); err != nil {
 			logger_utils.Error("error when scan user row into user struct", err)
-			return nil, errors_utils.NewInternalServerError("error when tying to gett user", errors.New("database error"))
+			return nil, errors_utils.NewInternalServerError("error when tying to get user", errors.New("database error"))
 		}
 		results = append(results, user)
 	}

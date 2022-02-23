@@ -19,6 +19,7 @@ type PrivateUser struct {
 	Status      string `json:"status"`
 }
 
+//TODO: make a switch cases for output based on a string header passed
 func (users Users) Marshall(isPublic bool) []interface{} {
 	result := make([]interface{}, len(users))
 	for index, user := range users {
