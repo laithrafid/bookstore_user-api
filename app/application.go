@@ -17,5 +17,5 @@ func StartApplication() {
 	}
 	mapUrls()
 	logger_utils.Info("starting the application ....")
-	router.Run(config.ServerAddress)
+	router.Run(config.UsersApiAddress)
 }
