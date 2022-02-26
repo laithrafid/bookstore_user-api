@@ -1,4 +1,4 @@
-version: '3.4'
+version: '3.8'
 
 services:
   db:
@@ -17,6 +17,22 @@ services:
     network_mode: host
     expose:
       - 3306
-
+  cassandra:
+    image: cassandra:latest
+    restart: always
+    ports:
+      - 7000:7000
+      - 9042:9042
+    expose:
+    - 7000
+    - 9042
+    volumes:
+      - cass-data:/var/lib/cassandra/commitlog
+      - cass-data:/var/lib/cassandra/hints
+      - cass-data:/var/lib/cassandra/data
+      - cass-data:/var/lib/cassandra/saved_caches
+      - cass-data:/var/log/cassandra
+      
 volumes:
   mysql-data:
+  cass-data:
