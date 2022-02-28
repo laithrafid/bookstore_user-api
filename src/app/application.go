@@ -2,8 +2,8 @@ package app
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/laithrafid/bookstore_user-api/utils/config_utils"
-	"github.com/laithrafid/bookstore_user-api/utils/logger_utils"
+	"github.com/laithrafid/bookstore_user-api/src/src/utils/config_utils"
+	"github.com/laithrafid/bookstore_user-api/src/src/utils/logger_utils"
 )
 
 var (

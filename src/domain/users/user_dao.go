@@ -6,11 +6,11 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/laithrafid/bookstore_user-api/utils/logger_utils"
-	"github.com/laithrafid/bookstore_user-api/utils/mysql_utils"
+	"github.com/laithrafid/bookstore_user-api/src/utils/logger_utils"
+	"github.com/laithrafid/bookstore_user-api/src/utils/mysql_utils"
 
-	"github.com/laithrafid/bookstore_user-api/datasources/mysql/users_db"
-	"github.com/laithrafid/bookstore_user-api/utils/errors_utils"
+	"github.com/laithrafid/bookstore_user-api/src/datasources/mysql/users_db"
+	"github.com/laithrafid/bookstore_user-api/src/utils/errors_utils"
 )
 
 const (

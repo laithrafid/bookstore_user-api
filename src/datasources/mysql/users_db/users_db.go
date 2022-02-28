@@ -4,8 +4,8 @@ import (
 	"database/sql"
 
 	"github.com/go-sql-driver/mysql"
-	"github.com/laithrafid/bookstore_user-api/utils/config_utils"
-	"github.com/laithrafid/bookstore_user-api/utils/logger_utils"
+	"github.com/laithrafid/bookstore_user-api/src/utils/config_utils"
+	"github.com/laithrafid/bookstore_user-api/src/utils/logger_utils"
 )
 
 var (

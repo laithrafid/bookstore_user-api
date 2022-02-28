@@ -5,7 +5,7 @@ import (
 	"strings"
 
 	"github.com/go-sql-driver/mysql"
-	"github.com/laithrafid/bookstore_user-api/utils/errors_utils"
+	"github.com/laithrafid/bookstore_user-api/src/utils/errors_utils"
 )
 
 const (

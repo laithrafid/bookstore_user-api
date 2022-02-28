@@ -5,10 +5,10 @@ import (
 	"strconv"
 
 	"github.com/gin-gonic/gin"
-	"github.com/laithrafid/bookstore_user-api/domain/users"
-	"github.com/laithrafid/bookstore_user-api/services"
-	"github.com/laithrafid/bookstore_user-api/utils/errors_utils"
-	"github.com/laithrafid/bookstore_user-api/utils/oauth_utils"
+	"github.com/laithrafid/bookstore_user-api/src/domain/users"
+	"github.com/laithrafid/bookstore_user-api/src/services"
+	"github.com/laithrafid/bookstore_user-api/src/utils/errors_utils"
+	"github.com/laithrafid/bookstore_user-api/src/utils/oauth_utils"
 )
 
 func getUserId(userIdParam string) (int64, errors_utils.RestErr) {
