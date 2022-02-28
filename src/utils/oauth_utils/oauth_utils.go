@@ -9,9 +9,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/laithrafid/bookstore_user-api/src/src/utils/config_utils"
-	"github.com/laithrafid/bookstore_user-api/src/src/utils/errors_utils"
-	"github.com/laithrafid/bookstore_user-api/src/src/utils/logger_utils"
+	"github.com/laithrafid/bookstore_user-api/src/utils/config_utils"
+	"github.com/laithrafid/bookstore_user-api/src/utils/errors_utils"
+	"github.com/laithrafid/bookstore_user-api/src/utils/logger_utils"
 	"github.com/mercadolibre/golang-restclient/rest"
 )
 
