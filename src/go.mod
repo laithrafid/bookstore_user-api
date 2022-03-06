@@ -5,7 +5,7 @@ go 1.17
 require (
 	github.com/gin-gonic/gin v1.7.7
 	github.com/go-sql-driver/mysql v1.6.0
-	github.com/laithrafid/bookstore_utils-go v0.0.0-20220306060250-428571d83e83
+	github.com/laithrafid/bookstore_utils-go v0.0.0-20220306063334-5554fdd59f7c
 )
 
 require (

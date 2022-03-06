@@ -29,6 +29,6 @@ func init() {
 		logger_utils.Error("Error trying to ping to database", connErr)
 	}
 
-	mysql.SetLogger(logger_utils.GetLogger())
+	mysql.SetLogger(logger_utils.Getlogger())
 	logger_utils.Info("successfully connected to backend Database")
 }
