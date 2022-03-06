@@ -7,8 +7,8 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/laithrafid/bookstore_user-api/src/domain/users"
 	"github.com/laithrafid/bookstore_user-api/src/services"
-	"github.com/laithrafid/bookstore_user-api/src/utils/errors_utils"
-	"github.com/laithrafid/bookstore_user-api/src/utils/oauth_utils"
+	"github.com/laithrafid/bookstore_utils-go/errors_utils"
+	oauth "github.com/laithrafid/bookstore_utils-go/oauth_utils"
 )
 
 func getUserId(userIdParam string) (int64, errors_utils.RestErr) {

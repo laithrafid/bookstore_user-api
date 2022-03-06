@@ -2,9 +2,9 @@ package services
 
 import (
 	"github.com/laithrafid/bookstore_user-api/src/domain/users"
-	"github.com/laithrafid/bookstore_user-api/src/utils/crypto_utils"
-	"github.com/laithrafid/bookstore_user-api/src/utils/date_utils"
-	"github.com/laithrafid/bookstore_user-api/src/utils/errors_utils"
+	"github.com/laithrafid/bookstore_utils-go/crypto_utils"
+	"github.com/laithrafid/bookstore_utils-go/date_utils"
+	"github.com/laithrafid/bookstore_utils-go/errors_utils"
 )
 
 var (
