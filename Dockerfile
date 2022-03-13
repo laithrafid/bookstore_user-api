@@ -1,6 +1,6 @@
 ARG BTYPE
 ARG BRANCH
-ARG REPO=bookstore_user-api
+ARG REPO
 
 FROM golang:1.17.6 as base
 LABEL bayt.cloud.image.authors="laith@bayt.cloud"
@@ -56,7 +56,7 @@ RUN  --mount=type=secret,id=credentials,required \
   url."https://${GITHUBID}:${MY_GITHUB_TOKEN}@github.com".insteadOf \
   "https://github.com"
 RUN --mount=type=secret,id=credentials,required \
- git clone https://${MY_GITHUB_TOKEN}@github.com/${GITHUBID}/${REPO}.git --branch=${BRANCH} .
+ git clone https://${MY_GITHUB_TOKEN}@github.com/${REPO}.git --branch=${BRANCH} .
 
 
 FROM builder-${BTYPE} AS builder
