@@ -1,6 +1,6 @@
-ARG BTYPE
-ARG BRANCH
-ARG REPO
+ARG BTYPE=cihub
+ARG BRANCH=main
+ARG REPO=github.com/laithrafid
 
 FROM golang:1.17.6 as base
 LABEL bayt.cloud.image.authors="laith@bayt.cloud"
