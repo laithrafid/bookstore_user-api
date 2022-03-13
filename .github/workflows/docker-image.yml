@@ -2,8 +2,7 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ stg ]
-    # Publish semver tags as releases.
+    branches: [ main ]
     tags: [ 'v*.*.*' ]
  
 env:
@@ -23,7 +22,7 @@ jobs:
     - name: Build the Docker image
       env:
         VERSION: ${{ env.GIT_TAG }}
-      run: docker build . --file Dockerfile --build-arg BTYPE=github MY_GITHUB_TOKEN=${{ secrets.MY_GITHUB_TOKEN }}  --tag ${{ env.IMAGE_NAME }}:${{ env.VERSION}}
+      run: docker build . --file Dockerfile --build-arg BTYPE=github BRANCH=main MY_GITHUB_TOKEN=${{ secrets.MY_GITHUB_TOKEN }}  --tag ${{ env.IMAGE_NAME }}:${{ env.VERSION}}
       
     - name: Log in to registry
         # This is where you will update the PAT to GITHUB_TOKEN
