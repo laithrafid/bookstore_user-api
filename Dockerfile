@@ -1,5 +1,6 @@
 ARG BTYPE=cihub
 ARG BRANCH=main
+ARG MY_GITHUB_TOKEN
 
 FROM golang:1.17.6 as base
 LABEL bayt.cloud.image.authors="laith@bayt.cloud"
