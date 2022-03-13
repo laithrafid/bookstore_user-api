@@ -17,7 +17,7 @@ func init() {
 	if err != nil {
 		logger_utils.Error("cannot load mysql config:", err)
 	}
-	driver := config.MysqlDBDriver
+	driver := "mysql"
 	source := config.MysqlDBSource
 
 	var connErr error
