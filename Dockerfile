@@ -1,7 +1,5 @@
 ARG BTYPE=cihub
 ARG BRANCH=main
-ARG REPO=bookstore_items-api
-ARG MY_GITHUB_TOKEN
 
 FROM golang:1.17.6 as base
 LABEL bayt.cloud.image.authors="laith@bayt.cloud"
@@ -49,13 +47,15 @@ RUN --mount=type=secret,id=credentials,required \
 FROM base as builder-cihub
 ARG GITHUBID=laithrafid
 ENV GITHUBID=$GITHUBID
+ARG MY_GITHUB_TOKEN
 ENV MY_GITHUB_TOKEN=$MY_GITHUB_TOKEN
+ARG REPO=bookstore_items-api
 ENV REPO=$REPO
 RUN git config \
   --global \
   url."https://$GITHUBID:$MY_GITHUB_TOKEN@github.com".insteadOf \
   "https://github.com"
-RUN git clone https://$MY_GITHUB_TOKEN@github.com/$GITHUBID/${REPO}.git --branch=${BRANCH} .
+RUN git clone https://${MY_GITHUB_TOKEN}@github.com/${GITHUBID}/${REPO}.git --branch=${BRANCH} .
 
 
 FROM builder-${BTYPE} AS builder
