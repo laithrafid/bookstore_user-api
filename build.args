@@ -1,4 +1,0 @@
-BTYPE=cihub
-BRANCH=main
-MY_GITHUB_TOKEN=${{ secrets.MY_GITHUB_TOKEN }}
-REPO=${{ env.IMAGE_NAME }}
