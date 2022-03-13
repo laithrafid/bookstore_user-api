@@ -1,7 +1,7 @@
+#syntax=docker/dockerfile:1.2
 ARG BTYPE
 ARG BRANCH
 ARG REPO
-ARG MY_GITHUB_TOKEN
 
 FROM golang:1.17.6 as base
 LABEL bayt.cloud.image.authors="laith@bayt.cloud"
@@ -49,8 +49,6 @@ RUN --mount=type=secret,id=credentials,required \
 FROM base as builder-cihub
 ARG GITHUBID=laithrafid
 ENV GITHUBID=$GITHUBID
-ARG MY_GITHUB_TOKEN
-ENV MY_GITHUB_TOKEN=$MY_GITHUB_TOKEN
 ARG REPO=bookstore_items-api
 ENV REPO=$REPO
 ENV BRANCH=$BRANCH
@@ -73,8 +71,8 @@ RUN go build -o /itemsapi
 
 FROM alpine:3.15.0 as production
 RUN apk --no-cache add curl shadow
-ENV APP_USER app
-ENV APP_HOME /itemsapi
+ENV APP_USER=app
+ENV APP_HOME=/itemsapi
 RUN groupadd $APP_USER && useradd -m -g $APP_USER -l $APP_USER
 WORKDIR $APP_HOME
 
