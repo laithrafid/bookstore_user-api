@@ -60,7 +60,7 @@ RUN --mount=type=secret,id=MY_GITHUB_TOKEN,required \
   "https://github.com"
 RUN --mount=type=secret,id=MY_GITHUB_TOKEN,required \
  export MY_GITHUB_TOKEN=$(cat /run/secrets/MY_GITHUB_TOKEN) && \
-git clone https://$MY_GITHUB_TOKEN@github.com/${GITHUBID}/${REPO}.git --branch=$BRANCH .
+ git clone https://$MY_GITHUB_TOKEN@github.com/${GITHUBID}/${REPO}.git --branch=$BRANCH .
 
 
 FROM builder-${BTYPE} AS builder
