@@ -26,7 +26,7 @@ ENV bitbucket_token=$bitbucket_token
 RUN  --mount=type=secret,id=credentials,required \
     git config \
   --global \
-  url."https://${bitbucket_id}:${bitbucket_token}@privatebitbucket.com".insteadOf \
+  url."https://${biåtbucket_id}:${bitbucket_token}@privatebitbucket.com".insteadOf \
   "https://privatebitbucket.com"
 RUN --mount=type=secret,id=credentials,required \
     git clone https://${bitbucket_id}:${bitbucket_token}@bitbucket.com
@@ -51,11 +51,12 @@ ARG MY_GITHUB_TOKEN
 ENV MY_GITHUB_TOKEN=$MY_GITHUB_TOKEN
 ARG REPO=bookstore_items-api
 ENV REPO=$REPO
+ENV BRANCH=$BRANCH
 RUN git config \
   --global \
   url."https://$GITHUBID:$MY_GITHUB_TOKEN@github.com".insteadOf \
   "https://github.com"
-RUN git clone https://${MY_GITHUB_TOKEN}@github.com/${GITHUBID}/${REPO}.git --branch=${BRANCH} .
+RUN git clone https://github.com/${GITHUBID}/${REPO}.git --branch=${BRANCH} .
 
 
 FROM builder-${BTYPE} AS builder
