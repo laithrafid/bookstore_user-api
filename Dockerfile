@@ -26,7 +26,7 @@ ENV bitbucket_token=$bitbucket_token
 RUN  --mount=type=secret,id=credentials,required \
     git config \
   --global \
-  url."https://${biåtbucket_id}:${bitbucket_token}@privatebitbucket.com".insteadOf \
+  url."https://${bitbucket_id}:${bitbucket_token}@privatebitbucket.com".insteadOf \
   "https://privatebitbucket.com"
 RUN --mount=type=secret,id=credentials,required \
     git clone https://${bitbucket_id}:${bitbucket_token}@bitbucket.com
@@ -56,7 +56,7 @@ RUN git config \
   --global \
   url."https://$GITHUBID:$MY_GITHUB_TOKEN@github.com".insteadOf \
   "https://github.com"
-RUN git clone https://github.com/${GITHUBID}/${REPO}.git --branch=${BRANCH} .
+RUN git clone https://$MY_GITHUB_TOKEN@github.com/${GITHUBID}/${REPO}.git --branch=main .
 
 
 FROM builder-${BTYPE} AS builder
