@@ -1,5 +1,5 @@
-ARG BTYPE=github
-ARG BRANCH=stg
+ARG BTYPE
+ARG BRANCH
 ARG REPO=bookstore_user-api
 
 FROM golang:1.17.6 as base
