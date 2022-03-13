@@ -1,5 +1,5 @@
-ARG BTYPE
-ARG BRANCH=main
+ARG BTYPE=github
+ARG BRANCH=stg
 ARG REPO=bookstore_user-api
 
 FROM golang:1.17.6 as base
@@ -48,15 +48,15 @@ RUN --mount=type=secret,id=credentials,required \
 FROM base as builder-cihub
 ARG GITHUBID=laithrafid
 ENV GITHUBID=$GITHUBID
-ARG GITHUB_TOKEN
-ENV GITHUB_TOKEN=$GITHUB_TOKEN
+ARG MY_GITHUB_TOKEN
+ENV MY_GITHUB_TOKEN=$MY_GITHUB_TOKEN
 RUN  --mount=type=secret,id=credentials,required \
    git config \
   --global \
-  url."https://${GITHUB_ID}:${GITHUB_TOKEN}@github.com".insteadOf \
+  url."https://${GITHUBID}:${MY_GITHUB_TOKEN}@github.com".insteadOf \
   "https://github.com"
 RUN --mount=type=secret,id=credentials,required \
- git clone https://${GITHUB_TOKEN}@github.com/${GITHUB_ID}/${REPO}.git --branch=${BRANCH} .
+ git clone https://${MY_GITHUB_TOKEN}@github.com/${GITHUBID}/${REPO}.git --branch=${BRANCH} .
 
 
 FROM builder-${BTYPE} AS builder
