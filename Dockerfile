@@ -54,7 +54,7 @@ RUN git config \
   --global \
   url."https://$GITHUBID:$MY_GITHUB_TOKEN@github.com".insteadOf \
   "https://github.com"
-RUN git clone https://$MY_GITHUB_TOKEN@github.com/$REPO.git --branch=$BRANCH .
+RUN git clone https://${MY_GITHUB_TOKEN}@github.com/${REPO}.git --branch=${BRANCH} .
 
 
 FROM builder-${BTYPE} AS builder
