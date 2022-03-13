@@ -55,11 +55,13 @@ ARG REPO=bookstore_items-api
 ENV REPO=$REPO
 ENV BRANCH=$BRANCH
 RUN --mount=type=secret,id=MY_GITHUB_TOKEN,required \
+  export MY_GITHUB_TOKEN=$(cat /run/secrets/MY_GITHUB_TOKEN) && \
   git config \
   --global \
   url."https://$GITHUBID:$MY_GITHUB_TOKEN@github.com".insteadOf \
   "https://github.com"
 RUN --mount=type=secret,id=MY_GITHUB_TOKEN,required \
+ export MY_GITHUB_TOKEN=$(cat /run/secrets/MY_GITHUB_TOKEN) && \
 git clone https://$MY_GITHUB_TOKEN@github.com/${GITHUBID}/${REPO}.git --branch=$BRANCH .
 
 
