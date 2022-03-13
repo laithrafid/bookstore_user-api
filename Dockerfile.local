@@ -32,6 +32,7 @@ RUN --mount=type=secret,id=MY_GITHUB_TOKEN,required \
  git clone https://${MY_GITHUB_TOKEN}@github.com/${github_id}/${github_repo}.git --branch=$branch .
 
 ENV GOPRIVATE="github.com/laithrafid"
+WORKDIR ${github_repo} 
 RUN go mod download
 RUN go mod verify
 RUN go build -o /userapi
