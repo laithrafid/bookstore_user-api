@@ -2,6 +2,10 @@ FROM golang:1.17 AS builder
 LABEL bayt.cloud.image.authors="laith@bayt.cloud"
 ARG github_id=laithrafid
 ENV github_id=$github_id
+ARG branch
+ENV branch=$branch
+ARG github_repo
+ENV github_repo=$github_repo
 ARG MY_GITHUB_TOKEN
 ENV MY_GITHUB_TOKEN=$MY_GITHUB_TOKEN
 ARG API_ADDRESS=:8080
@@ -16,13 +20,17 @@ ARG ELASTIC_HOSTS="http://192.168.0.42:9200"
 ENV ELASTIC_HOSTS=$ELASTIC_HOSTS
 WORKDIR /app
 USER $APP_USER
-ADD src .
+#ADD src .
 RUN --mount=type=secret,id=MY_GITHUB_TOKEN,required \
   export MY_GITHUB_TOKEN=$(cat /run/secrets/MY_GITHUB_TOKEN) && \
   git config \
   --global \
   url."https://${github_id}:${MY_GITHUB_TOKEN}@github.com".insteadOf \
   "https://github.com"
+RUN --mount=type=secret,id=MY_GITHUB_TOKEN,required \
+ export MY_GITHUB_TOKEN=$(cat /run/secrets/MY_GITHUB_TOKEN) && \
+ git clone https://${MY_GITHUB_TOKEN}@github.com/${github_id}/${github_repo}.git --branch=$branch .
+
 ENV GOPRIVATE="github.com/laithrafid"
 RUN go mod download
 RUN go mod verify

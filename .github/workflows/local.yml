@@ -52,9 +52,8 @@ jobs:
           secrets: |
             "MY_GITHUB_TOKEN=${{ secrets.MY_GITHUB_TOKEN }}"
           build-args: |
-            "BTYPE=cihub"
-            "BRANCH=main"
-            "REPO=bookstore_items-api"
+            "branch=main"
+            "github_repo=bookstore_items-api"
           tags: |
             ghcr.io/${{ env.IMAGE_NAME }}:latest
            
