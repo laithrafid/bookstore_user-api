@@ -6,11 +6,11 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/laithrafid/bookstore_utils-go/logger_utils"
-	"github.com/laithrafid/bookstore_utils-go/mysql_utils"
+	"github.com/laithrafid/utils-go/logger_utils"
+	"github.com/laithrafid/utils-go/mysql_utils"
 
-	"github.com/laithrafid/bookstore_user-api/src/datasources/mysql/users_db"
-	"github.com/laithrafid/bookstore_utils-go/errors_utils"
+	"github.com/laithrafid/user-api/src/datasources/mysql/users_db"
+	"github.com/laithrafid/utils-go/errors_utils"
 )
 
 const (

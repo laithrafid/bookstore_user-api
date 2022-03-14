@@ -4,7 +4,7 @@ package users
 import (
 	"strings"
 
-	"github.com/laithrafid/bookstore_utils-go/errors_utils"
+	"github.com/laithrafid/utils-go/errors_utils"
 )
 
 const (

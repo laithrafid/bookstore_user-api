@@ -1,8 +1,8 @@
 package app
 
 import (
-	"github.com/laithrafid/bookstore_user-api/src/controllers/ping"
-	"github.com/laithrafid/bookstore_user-api/src/controllers/users"
+	"github.com/laithrafid/user-api/src/controllers/ping"
+	"github.com/laithrafid/user-api/src/controllers/users"
 )
 
 func mapUrls() {
