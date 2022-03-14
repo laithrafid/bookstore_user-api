@@ -4,11 +4,12 @@ import (
 	"net/http"
 	"strconv"
 
+	"github.com/federicoleon/bookstore_oauth-go/oauth"
 	"github.com/gin-gonic/gin"
 	"github.com/laithrafid/user-api/src/domain/users"
 	"github.com/laithrafid/user-api/src/services"
 	"github.com/laithrafid/utils-go/errors_utils"
-	oauth "github.com/laithrafid/utils-go/oauth_utils"
+	"github.com/laithrafid/utils-go/oauth_utils"
 )
 
 func getUserId(userIdParam string) (int64, errors_utils.RestErr) {
@@ -36,7 +37,7 @@ func Create(c *gin.Context) {
 }
 
 func Get(c *gin.Context) {
-	if err := oauth.AuthenticateRequest(c.Request); err != nil {
+	if err := oauth_utils.AuthenticateRequest(c.Request); err != nil {
 		c.JSON(err.Status(), err)
 		return
 	}
@@ -52,7 +53,7 @@ func Get(c *gin.Context) {
 		return
 	}
 
-	if oauth.GetCallerId(c.Request) == user.Id {
+	if oauth_utils.GetCallerId(c.Request) == user.Id {
 		c.JSON(http.StatusOK, user.Marshall(false))
 		return
 	}
