@@ -1,8 +1,23 @@
 ![UserAPI-docker-Image](https://github.com/laithrafid/user-api/actions/workflows/main.yml/badge.svg?branch=main)
 
+# USERAPI service written in go
 
-#BookStore User 
-### it follows MVC patter 
+## Development Pattern
+![alt text](https://github.com/laithrafid/infra-api/blob/main/Images/devpattern.png?raw=true)
+
+
+## Archietecture 
+![alt text](https://github.com/laithrafid/infra-api/blob/main/Images/infra-api-architecture.png?raw=true)
+
+
+## User APi Endpoints and Calls
+GET  /users/:user_id
+PUT /users/:user_id
+PATCH /users/:user_id
+DELETE /users/:user_id
+GET internal/users/search
+POST /users
+POST /users/login
 
 
 #variables
